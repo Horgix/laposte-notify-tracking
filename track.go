@@ -83,12 +83,12 @@ func handleStatus(message string) {
   counter = counter + 1
   slackToken := os.Getenv("SLACK_TOKEN")
 
-  if message == "Arrivée en France" {
-    fmt.Println("Still arrived in France")
+  if message == "En cours de traitement" {
+    fmt.Println("Still treating")
     if counter % 60 == 0 {
       api := slack.New(slackToken)
       params :=  slack.PostMessageParameters{Username: "laposte", AsUser: true}
-      channelID, timestamp, err := api.PostMessage("@horgix", "Still " + message, params)
+      channelID, timestamp, err := api.PostMessage("@horgix", "Still \"" + message + "\"", params)
 
       if err != nil {
         fmt.Printf("%s\n", err)
